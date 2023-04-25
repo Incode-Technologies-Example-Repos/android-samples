@@ -1,0 +1,40 @@
+buildscript {
+    ext.gradle_plugin_version = '7.4.1'
+    ext.kotlin_version = '1.7.20'
+
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:$gradle_plugin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+
+        maven {
+            url 'https://jitpack.io'
+        }
+
+        // Incode maven repository
+        maven {
+            url "https://repo.incode.com/artifactory/libs-incode-welcome"
+            credentials {
+                username = "<your-maven-incode-username>"
+                password = "<your-maven-incode-password"
+            }
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
